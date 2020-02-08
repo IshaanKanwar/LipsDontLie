@@ -1,60 +1,52 @@
 import React,{Component} from 'react';
+import axios from 'axios';
 import $ from 'jquery';
 import './App.css';
 
 export default class Form extends Component{
-    componentDidMount(){
-        var btnUpload = $("#upload_file"),
-		btnOuter = $(".button_outer");
-	btnUpload.on("change", function(e){
-		var ext = btnUpload.val().split('.').pop().toLowerCase();
-		if($.inArray(ext, ['flv','mp4','mpeg']) == -1) {                  // Add different video extensions
-			$(".error_msg").text("Not a Video...");
-		} else {
-			$(".error_msg").text("");
-			btnOuter.addClass("file_uploading");
-			setTimeout(function(){
-				btnOuter.addClass("file_uploaded");
-			},3000);
-			var uploadedFile = URL.createObjectURL(e.target.files[0]);
-			setTimeout(function(){
-				$("#uploaded_view").append('<img src="'+uploadedFile+'" />').addClass("show");
-			},3500);
+	constructor(props) {
+		super(props);
+		  	this.state = {
+			selectedFile: null
 		}
-	});
-	$(".file_remove").on("click", function(e){
-		$("#uploaded_view").removeClass("show");
-		$("#uploaded_view").find("img").remove();
-		btnOuter.removeClass("file_uploading");
-		btnOuter.removeClass("file_uploaded");
-	});
-    }
+	}
+	
+	onChangeHandler=event=>{
+		this.setState({
+			selectedFile: event.target.files[0],
+			loaded: 0,
+		  })
+		console.log(event.target.files[0])
+	
+	}
+	
+	onClickHandler = () => {
+		const data = new FormData() 
+		data.append('file', this.state.selectedFile)
+		axios.post("http://localhost:8000/upload", data, { // receive two parameter endpoint url ,form data... Use firebase or aws s3 storage
+      })
+      .then(res => { // then print response status
+        console.log(res.statusText)
+      })
+
+	}
 
     render(){
         return(
-            // <div>
-            //     <form>
-            //         <input type="file" name="vid" accept="video/*"/>
-            //         <input type="submit" value="Submit" />
-            //     </form>
-            // </div>
+            <div>
+                {/* <form action="localhost:5000" method="post" enctype="multipart/form-data">
+                    <input type="file" name="vid" onChange={this.onChangeHandler}/>
+                    <input type="submit" value="Submit" onClick={this.onClickHandler}/>
+                </form> */}
 
-            <div class="container">
-		<div class="panel">
-			<div class="button_outer">
-				<div class="btn_upload">
-					<input type="file" id="upload_file" name="input_vid" accept="video/*"/>
-					Upload Video
-				</div>
-				<div class="processing_bar"></div>
-				<div class="success_box"></div>
-			</div>
-		</div>
-		<div class="error_msg"></div>
-		<div class="uploaded_file_view" id="uploaded_view">
-			<span class="file_remove">X</span>
-		</div>
-	</div>
+{/* <form method="post" action="#" id="#"> */}
+			 <label>Upload Your File </label>
+			 <input type="file" name="file" onChange={this.onChangeHandler}/>
+			 <button type="button" class="btn btn-success btn-block" onClick={this.onClickHandler}>Upload</button> 
+		 
+	   {/* </form> */}
+
+            </div>
 
         )
     }
