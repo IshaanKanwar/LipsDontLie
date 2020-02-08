@@ -1,6 +1,5 @@
 import React,{Component} from 'react';
 import axios from 'axios';
-import $ from 'jquery';
 import './App.css';
 
 export default class Form extends Component{
@@ -34,18 +33,9 @@ export default class Form extends Component{
     render(){
         return(
             <div>
-                {/* <form action="localhost:5000" method="post" enctype="multipart/form-data">
-                    <input type="file" name="vid" onChange={this.onChangeHandler}/>
-                    <input type="submit" value="Submit" onClick={this.onClickHandler}/>
-                </form> */}
-
-{/* <form method="post" action="#" id="#"> */}
 			 <label>Upload Your File </label>
 			 <input type="file" name="file" onChange={this.onChangeHandler}/>
-			 <button type="button" class="btn btn-success btn-block" onClick={this.onClickHandler}>Upload</button> 
-		 
-	   {/* </form> */}
-
+			 <button type="button" class="btn btn-success btn-block" onClick={this.onClickHandler}>Upload</button>
             </div>
 
         )
