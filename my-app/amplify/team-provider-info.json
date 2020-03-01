@@ -1,0 +1,15 @@
+{
+    "react": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-lipsdontlie-react-195124-authRole",
+            "UnauthRoleArn": "arn:aws:iam::189494379609:role/amplify-lipsdontlie-react-195124-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::189494379609:role/amplify-lipsdontlie-react-195124-authRole",
+            "Region": "us-east-2",
+            "DeploymentBucketName": "amplify-lipsdontlie-react-195124-deployment",
+            "UnauthRoleName": "amplify-lipsdontlie-react-195124-unauthRole",
+            "StackName": "amplify-lipsdontlie-react-195124",
+            "StackId": "arn:aws:cloudformation:us-east-2:189494379609:stack/amplify-lipsdontlie-react-195124/4d5ff350-4a7e-11ea-8a89-02582149edd0",
+            "AmplifyAppId": "d1bmhy5g3p7mmu"
+        }
+    }
+}
